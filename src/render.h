@@ -3,20 +3,15 @@
 class Render {
 private:
 	sf::RenderTarget& target;
-	sf::RectangleShape rect;
 
 public:
 	Render(sf::RenderTarget& target_) :
-		target{ target_ },
-		rect({ 30.0f, 30.0f })
+		target{ target_ }
 	{}
 
-	void create(Organism& org, int length, int width, float framerate) {
+	void createRect(Organism& org, int length, int width, float framerate) {
 		float dt = 1 / framerate;
 		org.update();
-
-		rect.setPosition(org.position);
-		rect.setFillColor(org.color);
-		target.draw(rect);
+		org.draw(target);
 	}
 };
