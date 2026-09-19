@@ -10,8 +10,8 @@ public:
 	{}
 
 	void createRect(Organism& org, int length, int width, float framerate) {
-		float dt = 1 / framerate;
-		org.update();
+		float dt = 1.f / framerate;
+		org.update(dt);
 		org.draw(target);
-	}
+	};
 };

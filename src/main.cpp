@@ -11,6 +11,7 @@ int main()
     const float size = 30.0f;
     const float pos_x = window_width / 2.f;
     const float pos_y = window_length / 2.f;
+    const float thickness = 5.f;
 
     sf::RenderWindow window(sf::VideoMode({ window_width,window_length }), "fractal_biome");
     window.setFramerateLimit(framerate);
@@ -19,7 +20,7 @@ int main()
 
     sf::Vector2f position{ pos_x,pos_y };
     sf::Color color = sf::Color::Blue;
-    RectOrg rect(position, color, size);
+    RectOrg rect(position, color, size, thickness);
 
     /* Main Loop */
     while (window.isOpen())
