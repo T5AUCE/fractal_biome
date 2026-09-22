@@ -14,7 +14,7 @@ struct Organism {
 	static constexpr float growthInterval = 10.0f; 
 	static constexpr int   maxDepth = 4;
 	static constexpr float childScale = 0.45f;
-	static constexpr float spreadFactor = 2.2f; 
+	static constexpr float spreadFactor = 2.0f; 
 
 	std::vector<std::unique_ptr<Organism>> children;
 
@@ -84,8 +84,8 @@ struct RectOrg: public Organism {
 
 			sf::Color newCol(
 				clampByte(color.r + i * 20 * dis(gen)),
-				clampByte(color.g + (numChildren - i) * 20 * dis(gen)),
-				clampByte(color.b - i * 15 * dis(gen))
+				clampByte(color.g + (numChildren - i - 1) * 20 * dis(gen)),
+				clampByte(color.b - i * 5 * dis(gen))
 			);
 
 			children.push_back(std::make_unique<RectOrg>(position + offset, newCol, childSize, thick * 0.6f, depth + 1));

@@ -5,13 +5,13 @@
 
 int main()
 {
-    constexpr int window_width = 1200;
-    constexpr int window_length = 1000;
+    constexpr int window_width = 1800;
+    constexpr int window_length = 1200;
     const float framerate = 60.0f;
-    const float size = 30.0f;
+    const float size = 10.0f;
     const float pos_x = window_width / 2.f;
     const float pos_y = window_length / 2.f;
-    const float thickness = 5.f;
+    const float thickness = 2.f;
 
     sf::RenderWindow window(sf::VideoMode({ window_width,window_length }), "fractal_biome");
     window.setFramerateLimit(framerate);
