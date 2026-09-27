@@ -1,17 +1,20 @@
 ﻿#include <SFML/Graphics.hpp>
 #include <iostream>
 #include "render.h"
-
+#include <random>
 
 int main()
 {
+    std::mt19937 gen{ std::random_device{}() };
     constexpr int window_width = 1800;
     constexpr int window_length = 1200;
     const float framerate = 60.0f;
-    const float size = 10.0f;
+
+    const float size = 50.0f;
     const float pos_x = window_width / 2.f;
     const float pos_y = window_length / 2.f;
-    const float thickness = 2.f;
+    const float thickness = 20.f;
+    const int sides = 8;
 
     sf::RenderWindow window(sf::VideoMode({ window_width,window_length }), "fractal_biome");
     window.setFramerateLimit(framerate);
@@ -19,10 +22,22 @@ int main()
     Render render(window);
 
     sf::Vector2f position{ pos_x,pos_y };
-    sf::Color color = sf::Color::Blue;
-    RectOrg rect(position, color, size, thickness);
 
-    /* Main Loop */
+    std::uniform_int_distribution<int> dis(50, 255);
+
+    sf::Color color(
+        static_cast<std::uint8_t>(dis(gen)),
+        static_cast<std::uint8_t>(dis(gen)),
+        static_cast<std::uint8_t>(dis(gen))
+    );
+    sf::Color color2(
+        static_cast<std::uint8_t>(dis(gen)),
+        static_cast<std::uint8_t>(dis(gen)),
+        static_cast<std::uint8_t>(dis(gen))
+    );
+
+    PolyOrg poly(position, color, color2, size, thickness,sides);
+
     while (window.isOpen())
     {
         while (const std::optional event = window.pollEvent())
@@ -33,7 +48,7 @@ int main()
             }
         }
         window.clear();
-        render.createRect(rect, window_length, window_width, framerate);
+        render.createRect(poly, window_length, window_width, framerate);
         window.display();
     }
 }
