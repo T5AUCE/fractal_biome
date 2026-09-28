@@ -30,6 +30,6 @@ FetchContent_Declare(
 )
 
 # Add exec
-add_executable(main src/main.cpp)
+add_executable(main src/main.cpp src/genome.cpp)
 target_compile_features(main PRIVATE cxx_std_20)
 target_link_libraries(main PRIVATE SFML::Graphics)

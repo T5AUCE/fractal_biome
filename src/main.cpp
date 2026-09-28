@@ -8,15 +8,14 @@ void expandFitView(sf::RenderWindow& window, float logicalWidth, float logicalHe
 int main()
 {
     std::mt19937 gen{ std::random_device{}() };
+    std::uniform_int_distribution<int> dis(20, 255);
+
     constexpr int window_width = 1920;
     constexpr int window_height = 1080;
     const float framerate = 60.0f;
 
-    const float size = 10.0f;
     const float pos_x = window_width / 2.f;
     const float pos_y = window_height / 2.f;
-    const float thickness = 20.f;
-    const int sides = 7;
 
     sf::RenderWindow window(sf::VideoMode({ window_width,window_height }), "fractal_biome");
     window.setFramerateLimit(framerate);
@@ -25,8 +24,6 @@ int main()
     Render render(window);
 
     sf::Vector2f position{ pos_x,pos_y };
-
-    std::uniform_int_distribution<int> dis(20, 255);
 
     sf::Color color(
         static_cast<std::uint8_t>(dis(gen)),
@@ -39,7 +36,8 @@ int main()
         static_cast<std::uint8_t>(dis(gen))
     );
 
-    PolyOrg poly(position, color, color2, size, thickness,sides);
+    Genome g = randomShapeGenome(globalRng());
+    PolyOrg poly(position, g, g.startSize, g.startThick);
 
     while (window.isOpen())
     {
@@ -70,21 +68,21 @@ int main()
     }
 }
 
-void expandFitView(sf::RenderWindow& window, float designWidth, float designHeight) {
+void expandFitView(sf::RenderWindow& window, float baseWidth, float baseHeight) {
     sf::Vector2u windowSize = window.getSize();
     float windowRatio = static_cast<float>(windowSize.x) / static_cast<float>(windowSize.y);
-    float designRatio = designWidth / designHeight;
+    float designRatio = baseWidth / baseHeight;
 
     float viewWidth, viewHeight;
     if (windowRatio > designRatio) {
-        viewHeight = designHeight;
-        viewWidth = designHeight * windowRatio;
+        viewHeight = baseHeight;
+        viewWidth = baseHeight * windowRatio;
     }
     else {
-        viewWidth = designWidth;
-        viewHeight = designWidth / windowRatio;
+        viewWidth = baseWidth;
+        viewHeight = baseWidth / windowRatio;
     }
 
-    sf::View view({ designWidth / 2.f, designHeight / 2.f }, { viewWidth, viewHeight });
+    sf::View view({ baseWidth / 2.f, baseHeight / 2.f }, { viewWidth, viewHeight });
     window.setView(view);
 }
