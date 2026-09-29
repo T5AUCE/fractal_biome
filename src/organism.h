@@ -25,8 +25,7 @@ struct Organism {
 
 	virtual void update(float dt) {
 		age += dt;
-		if (age <= (genome.maxDepth * genome.growthInterval) - ((depth + 1) * genome.growthInterval))
-			growSelf();
+		growSelf();
 		if (children.empty() && age >= genome.growthInterval && depth < genome.maxDepth)
 			replicate();
 		for (auto& child : children)
@@ -84,8 +83,9 @@ struct PolyOrg : public Organism {
 	}
 
 	void growSelf() override {
-		size *= 1.0005f;
-		thick *= 1.0005f;
+		float growthFactor = 1.f + 0.0005f / (1.f + depth * 0.5f);
+		size *= growthFactor;
+		thick *= growthFactor;
 		rebuildShape();
 	}
 
