@@ -83,9 +83,13 @@ struct PolyOrg : public Organism {
 	}
 
 	void growSelf() override {
-		float growthFactor = 1.f + 0.0005f / (1.f + depth * 0.5f);
-		size *= growthFactor;
-		thick *= growthFactor;
+		float maxSize = genome.startSize * genome.maxGrowthMult;
+		float maxThick = genome.startThick * genome.maxGrowthMult;
+		float progress = size / maxSize;
+
+		float growthFactor = 1.f + 0.0005f * (1.f - progress);
+		size = std::min(size * growthFactor, maxSize);
+		thick = std::min(thick * growthFactor, maxThick);
 		rebuildShape();
 	}
 

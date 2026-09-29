@@ -9,6 +9,7 @@ namespace {
         .sides = 3,
         .startSize = {15.f, 24.f},
         .startThick = {8.f, 14.f},
+        .maxGrowthMult = {2.5f, 3.5f},
         .numChildren = {3, 3},
         .maxDepth = {4, 5},
         .childScale = {0.40f, 0.55f},
@@ -21,6 +22,7 @@ namespace {
         .sides = 4,
         .startSize = {15.f, 24.f},
         .startThick = {6.f, 12.f},
+        .maxGrowthMult = {2.5f, 3.5f},
         .numChildren = {4, 4},
         .maxDepth = {3, 4},
         .childScale = {0.35f, 0.50f},
@@ -33,6 +35,7 @@ namespace {
         .sides = 6,
         .startSize = {15.f, 24.f},
         .startThick = {7.f, 13.f},
+        .maxGrowthMult = {2.5f, 3.5f},
         .numChildren = {6, 6},
         .maxDepth = {3, 4},
         .childScale = {0.30f, 0.45f},
@@ -68,6 +71,7 @@ Genome rollGenome(const ShapeSpec& s, std::mt19937& rng) {
     g.spec = &s;
     g.startSize = rollFloat(s.startSize, rng);
     g.startThick = rollFloat(s.startThick, rng);
+    g.maxGrowthMult = rollFloat(s.maxGrowthMult, rng);
     g.numChildren = rollInt(s.numChildren, rng);
     g.maxDepth = rollInt(s.maxDepth, rng);
     g.childScale = rollFloat(s.childScale, rng);

@@ -10,6 +10,7 @@ struct ShapeSpec {
     int sides;
     FloatRange startSize;
     FloatRange startThick;
+    FloatRange maxGrowthMult;
     IntRange   numChildren;
     IntRange   maxDepth;
     FloatRange childScale;
@@ -22,6 +23,7 @@ struct Genome {
     const ShapeSpec* spec = nullptr;
     float startSize = 0.f;
     float startThick = 0.f;
+    float maxGrowthMult = 0.f;
     int   numChildren = 0;
     int   maxDepth = 0;
     float childScale = 0.f;
