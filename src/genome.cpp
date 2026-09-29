@@ -7,8 +7,8 @@ namespace {
     {
         .name = "triangle",
         .sides = 3,
-        .startSize = {10.f, 24.f},
-        .startThick = {2.f, 4.f},
+        .startSize = {15.f, 24.f},
+        .startThick = {8.f, 14.f},
         .numChildren = {3, 3},
         .maxDepth = {4, 5},
         .childScale = {0.40f, 0.55f},
@@ -19,8 +19,8 @@ namespace {
     {
         .name = "square",
         .sides = 4,
-        .startSize = {10.f, 24.f},
-        .startThick = {2.f, 4.f},
+        .startSize = {15.f, 24.f},
+        .startThick = {6.f, 12.f},
         .numChildren = {4, 4},
         .maxDepth = {3, 4},
         .childScale = {0.35f, 0.50f},
@@ -31,8 +31,8 @@ namespace {
     {
         .name = "hexagon",
         .sides = 6,
-        .startSize = {10.f, 24.f},
-        .startThick = {2.f, 4.f},
+        .startSize = {15.f, 24.f},
+        .startThick = {7.f, 13.f},
         .numChildren = {6, 6},
         .maxDepth = {3, 4},
         .childScale = {0.30f, 0.45f},
