@@ -9,7 +9,7 @@ public:
 		target{ target_ }
 	{}
 
-	void createRect(Organism& org, int length, int width, float framerate) {
+	void createOrg(Organism& org, int length, int width, float framerate) {
 		float dt = 1.f / framerate;
 		org.update(dt);
 		org.draw(target);
